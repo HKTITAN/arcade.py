@@ -1,14 +1,11 @@
-import time
 import sys
+import os
 
-# typing effect
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.join(current_dir, "games"))
+sys.path.append(os.path.join(current_dir, "utils"))
 
-def typing_effect(text, delay=0.04):
-    for char in text:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(delay)
-    print()
+from utils.typing_effect import typing_effect
 
 # welcome screen
 
@@ -88,3 +85,7 @@ game = game_options.get(game)
 print("----------------------------------------------------------------------\n")
 typing_effect(f"Loading {game}...\n")
 print("----------------------------------------------------------------------\n")
+
+if game == 1:
+    from games.rockpaperscissors import rps
+    rps()
